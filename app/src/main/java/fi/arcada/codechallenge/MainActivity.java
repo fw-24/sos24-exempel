@@ -25,7 +25,16 @@ public class MainActivity extends AppCompatActivity {
         outputText = findViewById(R.id.outText);
         inputText = findViewById(R.id.inputText);
 
-        outputText.setText("Min app funkar!");
+        double version = 3.14159;
+        int year = 2024;
+        String author = "Fredde";
+
+        outputText.setText(String.format(
+                "Appens version %.1f år %d by %s",
+                version,
+                year,
+                author)
+        );
 
     }
 
