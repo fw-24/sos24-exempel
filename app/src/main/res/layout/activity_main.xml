@@ -11,7 +11,7 @@
         android:id="@+id/outText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="116dp"
         android:text="Code Challenge"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/inputText"
@@ -40,5 +40,15 @@
         app:layout_constraintStart_toEndOf="@+id/inputText"
         app:layout_constraintTop_toTopOf="@+id/inputText"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnCalc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:onClick="calculate"
+        android:text="Calculate"
+        app:layout_constraintStart_toStartOf="@+id/inputText"
+        app:layout_constraintTop_toBottomOf="@+id/inputText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
