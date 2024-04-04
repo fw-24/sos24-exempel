@@ -5,12 +5,19 @@ import java.util.Collections;
 
 public class Statistics {
 
-    public static double calcMedian(ArrayList<Double> values) {
 
+    public static ArrayList<Double> getSorted(ArrayList<Double> values) {
         // vi skapar en kopia av values
         ArrayList<Double> sorted = new ArrayList<>(values);
         // sedan sorterar vi kopian. Annars sorteras ursprungliga datamängden!
         Collections.sort(sorted);
+
+        return sorted;
+    }
+
+    public static double calcMedian(ArrayList<Double> values) {
+
+        ArrayList<Double> sorted = getSorted(values);
 
         // Detta funkar, ännu bättre skulle vara att kolla skilt för jämna datamängder
         // med medelvärde av de två mittersta
@@ -39,5 +46,22 @@ public class Statistics {
 
         return Math.sqrt(sumDeviation / values.size());
 
+    }
+
+    public static double calcLQ(ArrayList<Double> values) {
+        ArrayList<Double> sorted = getSorted(values);
+        int lQIndex = sorted.size() / 4;
+        if (sorted.size() % 2 == 0) {
+            // Om datamängden är jämn:
+            // Ta båda mittersta värdena och returnera medelvärdet av dem!
+        }
+
+        return sorted.get(lQIndex);
+    }
+    public static double calcUQ(ArrayList<Double> values) {
+        return 0;
+    }
+    public static double calcIQR(ArrayList<Double> values) {
+        return 0;
     }
 }

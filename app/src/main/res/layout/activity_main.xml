@@ -9,12 +9,12 @@
 
     <TextView
         android:id="@+id/outText"
-        android:layout_width="253dp"
-        android:layout_height="68dp"
+        android:layout_width="352dp"
+        android:layout_height="163dp"
         android:layout_marginTop="116dp"
         android:text="Code Challenge"
         android:textAlignment="viewEnd"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/inputText"
         app:layout_constraintTop_toBottomOf="@+id/inputText" />
 
