@@ -1,6 +1,7 @@
 package fi.arcada.codechallenge;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,7 +25,11 @@ public class DataItemViewAdapter extends RecyclerView.Adapter<DataItemViewAdapte
     @NonNull
     @Override
     public DataItemViewAdapter.DataItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.recycler_view_row, parent, false);
+
+        return new DataItemViewHolder(view);
+
     }
 
     @Override
