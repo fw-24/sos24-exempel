@@ -1,5 +1,6 @@
 package fi.arcada.codechallenge;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView outputText;
+    TextView outputText, greetingText;
     EditText inputText, inputValue;
     RecyclerView recyclerView;
     SharedPreferences prefs;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         outputText = findViewById(R.id.outText);
+
         inputText = findViewById(R.id.inputText);
         inputValue = findViewById(R.id.inputValue);
         recyclerView = findViewById(R.id.recyclerView);
@@ -45,7 +47,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Läs värde från SharedPreferences (uppateras i buttonHandler)
         String lastText = prefs.getString("lastText", "---");
-        outputText.setText("Last text: " + lastText);
+        int startCount = prefs.getInt("startCount", 1);
+
+        // Skriv värder i prefs (öka startCount)
+        SharedPreferences.Editor prefsEditor;
+        prefsEditor = prefs.edit();
+        prefsEditor.putInt("startCount", startCount+1);
+        prefsEditor.apply();
+
+        outputText.setText(String.format(
+                "Appen har startats %d gånger\nLast text: %s",
+                startCount,
+                lastText));
 
 
         for (int i = 0; i < testdata.length; i++) {
@@ -54,6 +67,20 @@ public class MainActivity extends AppCompatActivity {
         DataItemViewAdapter adapter = new DataItemViewAdapter(this, dataItems);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    // Körs till skillnad från onCreate alltid när man kommer tillbaka till MainActivity
+    public void onResume() {
+        super.onResume();
+        String greeting = prefs.getString("greeting", "Hello");
+        greetingText = findViewById(R.id.greetingText);
+        greetingText.setText(greeting);
+
+    }
+
+    public void openSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     public void calculate(View view) {
