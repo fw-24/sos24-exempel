@@ -10,4 +10,9 @@ public class Statistics {
 
         return sum / values.length;
     }
+
+    public static double[] sma(double[] values) {
+        double[] sma = {0};
+        return sma;
+    }
 }
