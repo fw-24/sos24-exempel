@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,29 +27,21 @@ public class MainActivity extends AppCompatActivity {
         outputText = findViewById(R.id.outText);
         inputText = findViewById(R.id.inputText);
 
-        double version = 3.14159;
-        int year = 2024;
-        String author = "Fredde";
-
-        outputText.setText(String.format(
-                "Appens version %.1f år %d by %s",
-                version,
-                year,
-                author)
-        );
-    }
-
-    public void calculate(View view) {
-        double[] values = { 3.5, 4.4, 9.0, 1.2, 6.5, 12.0 };
-
-        outputText.setText(String.format(
-                "Medelvärde: %.2f",
-                Statistics.calcMean(values)));
-
+        outputText.setText("Skriv ett heltal");
     }
 
     public void buttonHandler(View view) {
-        String text = inputText.getText().toString();
-        outputText.setText(text);
+
+        try {
+            int number = Integer.parseInt(inputText.getText().toString());
+            outputText.setText(String.format("Du skrev %d", number));
+        } catch (NumberFormatException e) {
+
+            Toast.makeText(this, "Det där var inget heltal!", Toast.LENGTH_LONG).show();
+
+            // "Snackbar" kan användas för mer avancerade egenskaper
+
+        }
+
     }
 }
